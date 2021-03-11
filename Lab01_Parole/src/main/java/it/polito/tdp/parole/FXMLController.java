@@ -31,8 +31,27 @@ public class FXMLController {
     @FXML // fx:id="txtResult"
     private TextArea txtResult; // Value injected by FXMLLoader
 
+    @FXML // fx:id="btnCancella"
+    private Button btnCancella; // Value injected by FXMLLoader
+
     @FXML // fx:id="btnReset"
     private Button btnReset; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="txtTime"
+    private TextArea txtTime; // Value injected by FXMLLoader
+
+    @FXML
+    void doCancel(ActionEvent event) {
+
+    	String daCancellare= txtResult.getSelectedText();
+    	words.togliParola(daCancellare);
+    	String s="";
+    	for(String ss: words.getElenco()) {
+    		s+= ss+ "\n";
+    	}
+    	txtResult.setText(s);
+    	txtTime.appendText("L'operazione CANCEL ha impegato "+System.nanoTime()+"ns"+"\n");
+    }
  
     Parole words= new Parole();
     @FXML
@@ -48,7 +67,9 @@ public class FXMLController {
     	for(String ss: words.getElenco()) {
     		s+= ss+ "\n";
     	}
+    	txtParola.clear();
     	txtResult.setText(s);
+    	txtTime.appendText("L'operazione INSERT ha impegato "+System.nanoTime()+"ns"+"\n");
     	
     	
     }
@@ -57,8 +78,9 @@ public class FXMLController {
     void doReset(ActionEvent event) {
 
     	words.reset();
-    	txtParola.clear();
+    	
     	txtResult.clear();
+    	txtTime.appendText("L'operazione RESET ha impegato "+System.nanoTime()+"ns"+"\n");
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

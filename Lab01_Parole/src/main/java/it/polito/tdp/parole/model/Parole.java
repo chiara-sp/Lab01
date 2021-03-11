@@ -28,5 +28,9 @@ public class Parole {
 	public void reset() {
 		words.clear();
 	}
+	
+	public void togliParola(String s) {
+		words.remove(s);
+	}
 
 }
